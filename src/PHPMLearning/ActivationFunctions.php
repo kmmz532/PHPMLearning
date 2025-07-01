@@ -79,7 +79,7 @@ class ActivationFunctions {
 	 * @param float $alpha 勾配の傾き（デフォルトは0.01）
 	 * @return float Leaky ReLU関数の出力値
 	 */
-	public static function leakyReLU(float $x, float $alpha = 0.01) : float {
+	public static function leakyrelU(float $x, float $alpha = 0.01) : float {
 		return $x >= 0 ? $x : $alpha * $x;
 	}
 
@@ -89,7 +89,7 @@ class ActivationFunctions {
 	 * @param float $alpha 勾配の傾き（デフォルトは0.01）
 	 * @return float Leaky ReLU関数の微分値
 	 */
-	public static function leakyReLUDerivative(float $x, float $alpha = 0.01) : float {
+	public static function leakyreluDerivative(float $x, float $alpha = 0.01) : float {
 		return $x >= 0 ? 1 : $alpha;
 	}
 
@@ -190,7 +190,7 @@ class ActivationFunctions {
 			'sigmoid' => ['output' => true],
 			'tanh' => ['output' => true],
 			'relu' => ['output' => false],
-			'leakyReLU' => ['output' => false],
+			'leakyrelU' => ['output' => false],
 			'elu' => ['output' => false],
 			'swish' => ['output' => false],
 			'gelu' => ['output' => false],

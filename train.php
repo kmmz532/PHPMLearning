@@ -52,12 +52,29 @@ function main(int $argc, array $argv) : int {
     $hidden_neurons = HIDDEN_NEURONS;
     $output_neurons = count(LABELS);
 
-    $nn = new NeuralNetwork($hidden_neurons, $input_neurons, $output_neurons, 'cross_entropy');
+    $nn = new NeuralNetwork($hidden_neurons, $input_neurons, $output_neurons, LOSS_FUNCTION);
 
-    // 中間層の活性化関数はReLU、出力層はsoftmaxに設定
-    $nn->setActivationFunction(0, 'relu');    // 第1中間層
-    $nn->setActivationFunction(1, 'relu');    // 第2中間層
-    $nn->setActivationFunction(2, 'softmax'); // 出力層
+    $hidden_layer_count = count($hidden_neurons);
+
+    // 中間層の活性化関数の設定
+    if (defined('HIDDEN_NEURONS_ACTIVATION_FUNCS')) {
+        foreach (HIDDEN_NEURONS_ACTIVATION_FUNCS as $i => $func) {
+            $nn->setActivationFunction($i, $func);
+        }
+    } else {
+        // デフォルトはReLU
+        for ($i = 0; $i < $hidden_layer_count; $i++) {
+            $nn->setActivationFunction($i, 'relu');
+        }
+    }
+
+    // 出力層の活性化関数の設定
+    if (defined('OUTPUT_ACTIVATION_FUNC')) {
+        $nn->setActivationFunction($hidden_layer_count, OUTPUT_ACTIVATION_FUNC);
+    } else {
+        // デフォルトはsoftmax
+        $nn->setActivationFunction($hidden_layer_count, 'softmax');
+    }
 
     $init_epoch = 0;
     $learning_rate = INIT_LEARNING_RATE;

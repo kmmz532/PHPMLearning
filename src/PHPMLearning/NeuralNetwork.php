@@ -34,6 +34,7 @@ class NeuralNetwork {
 	 * @param int|int[] $hidden_neurons 中間層のニューロン数（単一の整数または配列で指定）
 	 * @param int $input_neurons 入力層のニューロン数
 	 * @param int $output_neurons 出力層のニューロン数
+	 * @param string $loss_function 損失関数名 ('mse' または 'cross_entropy')
 	 * @param int $seed 乱数のシード値（-1ならランダム）
 	 */
 	public function __construct(int | array $hidden_neurons = [8, 6], int $input_neurons = 10, int $output_neurons = 4, string $loss_function = 'mse', int $seed = -1) {
