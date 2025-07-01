@@ -1,0 +1,31 @@
+{
+    "vocabulary": [
+        "a",
+        "amazing",
+        "and",
+        "awful",
+        "bad",
+        "done",
+        "excellent",
+        "good",
+        "great",
+        "hate",
+        "i",
+        "is",
+        "job",
+        "love",
+        "place",
+        "poor",
+        "see",
+        "terrible",
+        "the",
+        "this",
+        "wonderful",
+        "work"
+    ],
+    "labels": [
+        "positive",
+        "negative",
+        "neutral"
+    ]
+}
