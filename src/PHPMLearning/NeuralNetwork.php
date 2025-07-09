@@ -110,12 +110,18 @@ class NeuralNetwork {
 		if ($this->seed === -1)
 			$this->seed = mt_rand();
 
-		
-		$engine = new Mt19937($this->seed);
-		$rand = new Randomizer($engine);
-		
+		$engine = NULL;
+		$rand = NULL;
+
 		/** @phpstan-ignore-next-line */
-		$use_mt19937 = method_exists($rand, 'getFloat');
+		$use_mt19937 = class_exists("Mt19937");
+
+		if ($use_mt19937) {
+			$engine = $use_mt19937 ? new Mt19937($this->seed) : NULL;
+			$rand = $use_mt19937 ? new Randomizer($engine) : NULL;
+			/** @phpstan-ignore-next-line */
+			$use_mt19937 = method_exists($rand, 'getFloat');
+		}
 		
 		if (!$use_mt19937)
 			mt_srand($this->seed);
